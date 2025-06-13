@@ -11,19 +11,21 @@
       <!-- LEFT COLUMN: Rig Names -->
       <div class="rig-names-column">
         <div class="rig-name-header fontMedium fontSize-12 text-tertiary">Rig Name</div>
-        <div
-          v-for="rig in chartData"
-          :key="rig.RigId"
-          class="rig-name-row fontNormal fontSize-12 text-tertiary"
-          :style="{ height: rowPx(rig.RowData) }">
-          <span>{{ rig.Name }}</span>
-          <SvgIcon name="close-icon" class="svg-icon size9 text-tertiary rig-close" @click="removeRig(rig.RigId)" />
+        <div ref="rigNamesScroll" class="rig-names-scroll">
+          <div
+            v-for="rig in chartData"
+            :key="rig.RigId"
+            class="rig-name-row fontNormal fontSize-12 text-tertiary"
+            :style="{ height: rowPx(rig.RowData) }">
+            <span>{{ rig.Name }}</span>
+            <SvgIcon name="close-icon" class="svg-icon size9 text-tertiary rig-close" @click="removeRig(rig.RigId)" />
+          </div>
         </div>
       </div>
 
       <!-- CENTER COLUMN -->
       <div class="timeline-content">
-        <div class="timeline-scroll">
+        <div ref="timelineScroll" class="timeline-scroll">
           <!-- Month headers -->
           <div class="calendar-group-header">
             <div class="month-grid">
@@ -198,7 +200,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, PropType, nextTick } from 'vue';
+  import { defineComponent, PropType, nextTick, onMounted } from 'vue';
   import { GridLayout, GridItem } from 'grid-layout-plus';
   import { Api } from '@/services/api.services';
   interface Rig {
@@ -323,6 +325,16 @@
       Object.assign(this, this.generateLayoutData(this.zoom, this.cellWidth, 0));
       // Build chartData from initialRigs
       this.initializeChartData();
+    },
+
+    mounted() {
+      const timeline = this.$refs.timelineScroll as HTMLElement | undefined;
+      const names = this.$refs.rigNamesScroll as HTMLElement | undefined;
+      if (timeline && names) {
+        timeline.addEventListener('scroll', () => {
+          names.scrollTop = timeline.scrollTop;
+        });
+      }
     },
 
     methods: {
@@ -718,6 +730,9 @@
     border-right: 1px solid #ccc;
     width: 120px;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .rig-name-header {
@@ -729,6 +744,11 @@
     border-bottom: 1px solid #ccc;
     box-sizing: border-box;
     background: #f7f7f7;
+  }
+
+  .rig-names-scroll {
+    flex: 1;
+    overflow: hidden;
   }
 
   .rig-name-row {
