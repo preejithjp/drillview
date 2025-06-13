@@ -200,7 +200,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, PropType, nextTick } from 'vue';
+  import { defineComponent, PropType, nextTick, onMounted } from 'vue';
   import { GridLayout, GridItem } from 'grid-layout-plus';
   import { Api } from '@/services/api.services';
   interface Rig {
@@ -340,6 +340,7 @@
         };
         timeline.addEventListener('scroll', () => sync(timeline, names));
         names.addEventListener('scroll', () => sync(names, timeline));
+
       }
     },
 
