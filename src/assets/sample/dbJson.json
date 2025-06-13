@@ -1,0 +1,32 @@
+{
+  "towers": [
+    {
+      "TowerId": "Tower F",
+      "TowerName": "Tower F"
+    },
+    {
+      "TowerId": "Tower G",
+      "TowerName": "Tower G"
+    },
+    {
+      "TowerId": "Tower B",
+      "TowerName": "Tower B"
+    },
+    {
+      "TowerId": "Tower D",
+      "TowerName": "Tower D"
+    },
+    {
+      "TowerId": "Tower C",
+      "TowerName": "Tower C"
+    },
+    {
+      "TowerId": "Tower A",
+      "TowerName": "Tower A"
+    },
+    {
+      "TowerId": "Tower E",
+      "TowerName": "Tower E"
+    }
+  ]
+}

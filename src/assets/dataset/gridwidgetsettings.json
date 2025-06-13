@@ -1,0 +1,50 @@
+{
+    "Log": {
+        "widgetheight": 28,
+        "widgetwidth":6,
+        "color": "green",
+        "title": "Log chart"
+    },
+    "Numeric": {
+        "widgetheight": 4,
+        "widgetwidth":4,
+        "color": "red",
+        "title": "Numeric"
+    },
+    "Gauge": {
+        "widgetheight": 9,
+        "widgetwidth":4,
+        "color": "blue",
+        "title": "Gauge"
+    },
+    "Thermometer": {
+        "widgetheight": 14,
+        "widgetwidth":2,
+        "color": "blue",
+        "title": "Thermometer"
+    },
+    "Layout": {
+        "widgetheight": 28,
+        "widgetwidth":8,
+        "color": "yellow",
+        "title": "Layout"
+    },
+    "Label": {
+        "widgetheight": 4,
+        "widgetwidth":4,
+        "color": "red",
+        "title": "Label Widget"
+    },
+    "Image": {
+        "widgetheight": 4,
+        "widgetwidth": 4,
+        "color": "#0099ff",
+        "title": "Image"
+    },
+    "Comment": {
+        "widgetheight": 28,
+        "widgetwidth": 5,
+        "color": "red",
+        "title": "Comment Widget"
+    }
+}

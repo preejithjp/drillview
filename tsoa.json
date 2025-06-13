@@ -1,0 +1,35 @@
+{
+    "entryFile": "server/server.ts",
+    "noImplicitAdditionalProperties": "throw-on-extras",
+    "spec": {
+      "name": "Dashboard API Docs",
+      "specVersion": 3,
+      "outputDirectory": "public",
+      "basePath": "/api",
+      "noImplicitAdditionalProperties": "throw-on-extras",
+      "securityDefinitions": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      },
+      "tags": [
+        { "name" : "Auth"},
+        { "name" : "Dashboard"},
+        { "name" : "Layout"},
+        { "name" : "Chat Group"},
+        { "name" : "Chat Members"},
+        { "name" : "Chat Message"},
+        { "name" : "File Management"},
+        { "name" : "Data Collection"},
+        { "name" : "Synchronizer"},
+        { "name" : "UnitTypes"},
+        { "name" : "Platform"},
+        { "name" : "Organization"},
+        { "name" : "Member"},
+        { "name" : "Trace"}
+      ]
+    }
+  }
+  

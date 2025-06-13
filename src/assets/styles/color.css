@@ -1,0 +1,42 @@
+/* dashboard css */
+:root {
+  /* count colors */
+  --number-color-total-wellbore: #8f21e5;
+  --number-color-active-wellbore: #2c76bb;
+  --number-color-total-alarms: #fe6eb3;
+  --number-color-active-alarms: #ffa843;
+
+  /* activity colors */
+
+  --activity-normal: #b4b4b4;
+  --alert-red: #db1010;
+  --alert-yellow: #ff9901;
+  --menu-color: #004387;
+
+  /* alarm colors */
+
+  --alarm-border-color: #b9cdde;
+  --alarm-bg-color: #ffffff;
+  --dashboard-border: #e2eeef;
+  --alarm-icon-color: #ff8d4d;
+  --title-color: #003b77;
+  --status-color: #000;
+  --value-color: #003c77;
+  --alarm-shade-boder: #c6f3f0;
+  --act-text-color: #626262;
+  --well-depth: #000;
+  --status-color-type: #3f9175;
+  --alarm-icon-color: #f28d57;
+  --right-arrow-icon-color: #c0c1c1;
+  --right-arrow-icon: #205a32;
+
+  /* operations color */
+  --drilling-color: #862acd;
+  --cementing-color: #2674bc;
+  --coiltubing-color: #fc9a2d;
+  --welltesting-color: #15b369;
+
+  /* dataquality page colors */
+
+  --graph-title-color: #486249;
+}
