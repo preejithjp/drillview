@@ -748,7 +748,15 @@
 
   .rig-names-scroll {
     flex: 1;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Hide scrollbar for WebKit-based browsers */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
+  .rig-names-scroll::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
   }
 
   .rig-name-row {
