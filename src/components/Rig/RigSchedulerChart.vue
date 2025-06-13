@@ -331,9 +331,16 @@
       const timeline = this.$refs.timelineScroll as HTMLElement | undefined;
       const names = this.$refs.rigNamesScroll as HTMLElement | undefined;
       if (timeline && names) {
-        timeline.addEventListener('scroll', () => {
-          names.scrollTop = timeline.scrollTop;
-        });
+        let syncing = false;
+        const sync = (src: HTMLElement, dst: HTMLElement) => {
+          if (syncing) return;
+          syncing = true;
+          dst.scrollTop = src.scrollTop;
+          syncing = false;
+        };
+        timeline.addEventListener('scroll', () => sync(timeline, names));
+        names.addEventListener('scroll', () => sync(names, timeline));
+
       }
     },
 
