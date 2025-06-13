@@ -11,19 +11,21 @@
       <!-- LEFT COLUMN: Rig Names -->
       <div class="rig-names-column">
         <div class="rig-name-header fontMedium fontSize-12 text-tertiary">Rig Name</div>
-        <div
-          v-for="rig in chartData"
-          :key="rig.RigId"
-          class="rig-name-row fontNormal fontSize-12 text-tertiary"
-          :style="{ height: rowPx(rig.RowData) }">
-          <span>{{ rig.Name }}</span>
-          <SvgIcon name="close-icon" class="svg-icon size9 text-tertiary rig-close" @click="removeRig(rig.RigId)" />
+        <div ref="rigNamesScroll" class="rig-names-scroll">
+          <div
+            v-for="rig in chartData"
+            :key="rig.RigId"
+            class="rig-name-row fontNormal fontSize-12 text-tertiary"
+            :style="{ height: rowPx(rig.RowData) }">
+            <span>{{ rig.Name }}</span>
+            <SvgIcon name="close-icon" class="svg-icon size9 text-tertiary rig-close" @click="removeRig(rig.RigId)" />
+          </div>
         </div>
       </div>
 
       <!-- CENTER COLUMN -->
       <div class="timeline-content">
-        <div class="timeline-scroll">
+        <div ref="timelineScroll" class="timeline-scroll">
           <!-- Month headers -->
           <div class="calendar-group-header">
             <div class="month-grid">
@@ -323,6 +325,22 @@
       Object.assign(this, this.generateLayoutData(this.zoom, this.cellWidth, 0));
       // Build chartData from initialRigs
       this.initializeChartData();
+    },
+
+    mounted() {
+      const timeline = this.$refs.timelineScroll as HTMLElement | undefined;
+      const names = this.$refs.rigNamesScroll as HTMLElement | undefined;
+      if (timeline && names) {
+        let syncing = false;
+        const sync = (src: HTMLElement, dst: HTMLElement) => {
+          if (syncing) return;
+          syncing = true;
+          dst.scrollTop = src.scrollTop;
+          syncing = false;
+        };
+        timeline.addEventListener('scroll', () => sync(timeline, names));
+        names.addEventListener('scroll', () => sync(names, timeline));
+      }
     },
 
     methods: {
@@ -718,6 +736,9 @@
     border-right: 1px solid #ccc;
     width: 120px;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .rig-name-header {
@@ -729,6 +750,19 @@
     border-bottom: 1px solid #ccc;
     box-sizing: border-box;
     background: #f7f7f7;
+  }
+
+  .rig-names-scroll {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Hide scrollbar for WebKit-based browsers */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
+  .rig-names-scroll::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
   }
 
   .rig-name-row {
